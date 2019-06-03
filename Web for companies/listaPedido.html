@@ -1,0 +1,338 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="webthemez">
+
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <div id="listadoLocal">
+        <div class="row">
+            <div class="local">
+                <div class="col-md-6 localTitulo">
+                    Pedidos
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="local">
+                <div class="col-md-12 ">
+                    <table class="table table-bordered table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nro. Pedido</th>
+                                <th scope="col">Cliente</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Ver</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Pedido N0001</td>
+                                <td>Jorge Alva Castro</td>
+                                <td>Pendiente</td>
+                                <td><img class="img-ico" src="images/icons/editar.png" alt="" onclick="verPedido()">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="listaPedido" style="display: none">
+        <div class="row">
+            <div class="local">
+                <div class="col-md-6 localTitulo">
+                    Pedido N0001 - Jorge Alva Castro
+                </div>
+                <div class="col-md-6 localTitulo der">
+                    <button id="btnVerInfomarcionEnvio" class="btn btnMan" onclick="verInformacionEnvio()">Ver
+                        información de envío</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="pedidos">
+            <div class="row">
+                <div class="local">
+                    <div class="col-md-12 ">
+                        <table class="table table-bordered table-condensed">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col" class="cen">Nombre</th>
+                                    <th scope="col" class="cen">Categoria</th>
+                                    <th scope="col" class="cen">Cantidad</th>
+                                    <th scope="col" class="cen">Valor total</th>
+                                    <th scope="col" class="cen">Precio delivery</th>
+                                    <th scope="col" class="cen">Fecha del pedido</th>
+                                    <th scope="col" class="cen"><img class="img-ico" src="images/icons/editar.png"
+                                            alt="" onclick="verdetallePedido()"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="2" class="cenImg borderless"><img class="img-mini"
+                                            src="images/logo.png" alt="">
+                                    </td>
+                                    <td class="cenImg borderless">Camisa Rose</td>
+                                    <td class="cenImg borderless">Varones</td>
+                                    <td class="cenImg borderless">2 unidades</td>
+                                    <td class="cenImg borderless">S/378.00</td>
+                                    <td class="cenImg borderless">S/10.00</td>
+                                    <td class="cenImg borderless">Hoy 10:00 am</td>
+                                    <td rowspan="2" class="cenImg borderless"><button id="btnGuardarEstado"
+                                            class="btn btnMan" onclick="guardarEstado()">Guardar Estado</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="cenImg borderless">Estado del pedido</td>
+                                    <td colspan="3" class="cenImg borderless"><img id="imgEstado" class="img-estado"
+                                            src="images/icons/recibido.png" alt="" onclick="cambiarEstado()"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row">
+            <div class="local">
+                <div class="col-md-12 cen">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="informacionPedido" style="display: none">
+        <div class="row">
+            <div class="local">
+                <div id="tituloLocal" class="col-md-8 localTitulo">
+                    Información de envío
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="local">
+                <div class="col-md-12 ">
+                    <div class="form-group row">
+                        <div class="col-sm-2 ">
+                            Nombre:
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="inputNombre" value="Jorge" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-2 ">
+                            Apellidos:
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="inputApellidos" value="Alva Castro" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-2 ">
+                            Departamento:
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="inputDepartamento" value="Lima" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-2 ">
+                            Provincia:
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="inputProvincia" value="Lima" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-2 ">
+                            Distrito:
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="inputDistrito" value="San Miguel" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-2 ">
+                            Direccion:
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="inputDireccion" value="Av. La Marina 235"
+                                disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-2 ">
+                            Referencia:
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="inputReferencia" value="Frente al parque"
+                                disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-2 ">
+                            Teléfono de contacto:
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="inputTelefono" value="999 966 838" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="detallePedido" style="display: none">
+        <div class="row">
+            <div class="local">
+                <div class="col-md-6 localTitulo">
+                    Pedido N0001 - Jorge Alva Castro
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="local">
+                <div class="col-md-2 cen">
+
+                </div>
+                <div class="col-md-3 cen">
+                    <div class="imgPedido">
+                        <img class="img-pedido" src="images/Logo.png" alt="">
+                    </div>
+                </div>
+                <div class="col-md-4 izq">
+                    <div class="row">
+                        <label id="lblnomItem" class="itemDetalle">Camisa Blue Color</label>
+                    </div>
+                    <div class="form-group row">
+                        <label id="lblnomEmpresa" class="empresaDetalle">Colors Perú</label>
+                    </div>
+                    <div class="form-group row">
+                        <label id="lblprecioItem" class="precioDetalle">Precio: S/.189.00</label>
+                    </div>
+                    <div class="row">
+                        <label class="labelDetalle">Descripcion</label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="descripcionDetalle">Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba
+                            PruebaPrueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba</label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="labelDetalle">Color</label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="labelDetalle">Talla</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="local">
+                <div class="col-md-12 cen">
+                    Compra por menor
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="local">
+                <div class="col-md-12 cen">
+                    <div class="form-group row">
+                        <div class="col-sm-6 der">
+                            Cantidad
+                        </div>
+                        <div class="col-sm-6 izq">
+                            <label>02 unidades</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6 der">
+                            Valor total
+                        </div>
+                        <div class="col-sm-6 izq">
+                            <label>S/378.00</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6 der">
+                            Precio delivery
+                        </div>
+                        <div class="col-sm-6 izq">
+                            <label>S/10.00</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/carousel.js"></script>
+
+    <script type="text/javascript">
+
+        function verPedido() {
+            $("#listaPedido").show();
+            $("#listadoLocal").hide();
+            $("#informacionPedido").hide();
+            $("#detallePedido").hide();
+        }
+
+        function verInformacionEnvio() {
+            $("#informacionPedido").show();
+            $("#listaPedido").hide();
+            $("#listadoLocal").hide();
+            $("#detallePedido").hide();
+        }
+
+        function verdetallePedido() {
+            $("#detallePedido").show();
+            $("#listaPedido").hide();
+            $("#listadoLocal").hide();
+            $("#informacionPedido").hide();
+        }
+
+        function cambiarEstado() {
+            var imgSrc = $("#imgEstado").attr("src");
+
+            if (imgSrc == "images/icons/recibido.png") {
+                $("#imgEstado").attr("src", "images/icons/enviado.png");
+            } else {
+                if (imgSrc == "images/icons/enviado.png") {
+                    $("#imgEstado").attr("src", "images/icons/entregado.png");
+                } else {
+                    $("#imgEstado").attr("src", "images/icons/recibido.png");
+                }
+            }
+        }
+
+
+
+
+    </script>
+
+</body>
