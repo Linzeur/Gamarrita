@@ -46,21 +46,61 @@
                     <table class="table table-bordered table-condensed table-hover">
                         <thead>
                             <tr>
-                                <th scope="col"></th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Código</th>
-                                <th scope="col">Precio por menor</th>
-                                <th scope="col">Precio por mayor</th>
+                                <th scope="col" style="width: 60px"></th>
+                                <th scope="col" style="width: 400px">Nombre</th>
+                                <th scope="col" style="width: 100px">Precio por menor</th>
+                                <th scope="col" style="width: 100px">Precio por mayor</th>
                                 <th scope="col">Categoria</th>
-                                <th scope="col">Acciones</th>
+                                <th scope="col" style="width: 80px">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody id="tbListProducts">
+                        <tbody id="tbListProductsRegulars">
                             <tr>
                                 <td scope="row" class="cen"><img class="img-mini" src="images/logo.png" alt=""
                                         onclick="editarLocal()"></td>
                                 <td>Camisa Rose</td>
-                                <td>C-0001</td>
+                                <td>S/189.00</td>
+                                <td>S/169.00</td>
+                                <td>Varones</td>
+                                <td><img class="img-ico" src="images/icons/editar.png" alt=""
+                                        onclick="editarProducto()">
+                                    <img class="img-ico" src="images/icons/eliminar.png" alt=""
+                                        onclick="eliminarProducto()">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="local">
+                <div class="col-md-12 ">
+                    <select id="selectLocal" class="form-control form-control-sm">
+                        <option value="1">Mis Ofertas</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="local">
+                <div class="col-md-12 ">
+                    <table class="table table-bordered table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width: 60px"></th>
+                                <th scope="col" style="width: 400px">Nombre</th>
+                                <th scope="col" style="width: 100px">Precio por menor</th>
+                                <th scope="col" style="width: 100px">Precio por mayor</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col" style="width: 80px">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbListProductsOffers">
+                            <tr>
+                                <td scope="row" class="cen"><img class="img-mini" src="images/logo.png" alt=""
+                                        onclick="editarLocal()"></td>
+                                <td>Camisa Rose</td>
                                 <td>S/189.00</td>
                                 <td>S/169.00</td>
                                 <td>Varones</td>
@@ -83,8 +123,15 @@
                 <div id="tituloLocal" class="col-md-8 localTitulo">
                     Nuevo Producto
                 </div>
-                <div class="col-md-4 oferta" style="cursor: pointer" onclick="oferta()">
+                <!-- <div class="col-md-4 oferta" style="cursor: pointer" onclick="oferta()">
                     <img id="imgOferta" class="img-oferta" src="images/icons/off.png" alt=""> Oferta
+                </div> -->
+                <div class="col-md-4">
+                    <label class="switch">
+                        <input type="checkbox"/>
+                        <span class="slider"></span>
+                    </label>
+                    <span>Oferta</span>
                 </div>
                 <div id="subTituloLocal" class="col-md-12 localSubTitulo">
                     Ingresa los datos de tu nuevo producto.
@@ -94,16 +141,6 @@
         <div class="row">
             <div class="local">
                 <div class="col-md-12 ">
-                    <div class="form-group row">
-                        <div class="col-sm-2 ">
-                            Código del Producto:
-                        </div>
-
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" id="inputCodigoProducto"
-                                placeholder="Código del Producto">
-                        </div>
-                    </div>
                     <div class="form-group row">
                         <div class="col-sm-2 ">
                             Nombre del Producto:
@@ -300,7 +337,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="js/carousel.js"></script>
     <script src="Scripts/ListProducts.js"></script>
 
     <script type="text/javascript">
@@ -360,3 +396,4 @@
         }
     </script>
 </body>
+</html>
