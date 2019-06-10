@@ -2,398 +2,274 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="webthemez">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="webthemez">
 
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> -->
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
-
-
+	<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+	<!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> -->
+	<link href="css/styles.css" rel="stylesheet">
+	<link href="fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
 </head>
 
 <body>
-    <div id="listadoLocal">
-        <div class="row">
-            <div class="local">
-                <div class="col-md-6 localTitulo">
-                    Productos
-                </div>
-                <div class="col-md-4 inImg" style="cursor: pointer" onclick="agregarProducto()">
-                    <img class="img-ico" src="images/icons/agregarlocal.png" alt="">
-                </div>
-                <div class="col-md-2 inText" style="cursor: pointer" onclick="agregarProducto()">
-                    Agregar producto
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="local">
-                <div class="col-md-12 ">
-                    <select id="selectLocal" class="form-control form-control-sm">
-                        <option value="1">Mis Productos</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="local">
-                <div class="col-md-12 ">
-                    <table class="table table-bordered table-condensed table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col" style="width: 60px"></th>
-                                <th scope="col" style="width: 400px">Nombre</th>
-                                <th scope="col" style="width: 100px">Precio por menor</th>
-                                <th scope="col" style="width: 100px">Precio por mayor</th>
-                                <th scope="col">Categoria</th>
-                                <th scope="col" style="width: 80px">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbListProductsRegulars">
-                            <tr>
-                                <td scope="row" class="cen"><img class="img-mini" src="images/logo.png" alt=""
-                                        onclick="editarLocal()"></td>
-                                <td>Camisa Rose</td>
-                                <td>S/189.00</td>
-                                <td>S/169.00</td>
-                                <td>Varones</td>
-                                <td><img class="img-ico" src="images/icons/editar.png" alt=""
-                                        onclick="editarProducto()">
-                                    <img class="img-ico" src="images/icons/eliminar.png" alt=""
-                                        onclick="eliminarProducto()">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="local">
-                <div class="col-md-12 ">
-                    <select id="selectLocal" class="form-control form-control-sm">
-                        <option value="1">Mis Ofertas</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="local">
-                <div class="col-md-12 ">
-                    <table class="table table-bordered table-condensed table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col" style="width: 60px"></th>
-                                <th scope="col" style="width: 400px">Nombre</th>
-                                <th scope="col" style="width: 100px">Precio por menor</th>
-                                <th scope="col" style="width: 100px">Precio por mayor</th>
-                                <th scope="col">Categoria</th>
-                                <th scope="col" style="width: 80px">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbListProductsOffers">
-                            <tr>
-                                <td scope="row" class="cen"><img class="img-mini" src="images/logo.png" alt=""
-                                        onclick="editarLocal()"></td>
-                                <td>Camisa Rose</td>
-                                <td>S/189.00</td>
-                                <td>S/169.00</td>
-                                <td>Varones</td>
-                                <td><img class="img-ico" src="images/icons/editar.png" alt=""
-                                        onclick="editarProducto()">
-                                    <img class="img-ico" src="images/icons/eliminar.png" alt=""
-                                        onclick="eliminarProducto()">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div id="listadoLocal">
+		<div class="row">
+			<div class="local">
+				<div class="col-md-6 localTitulo">
+						Productos
+				</div>
+				<div class="col-md-4 inImg" style="cursor: pointer" onclick="addProduct()">
+						<img class="img-ico" src="images/icons/agregarlocal.png" alt="">
+				</div>
+				<div class="col-md-2 inText" style="cursor: pointer" onclick="addProduct()">
+						Agregar producto
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="local">
+				<div class="col-md-12 ">
+					<select id="selectLocal" class="form-control form-control-sm">
+							<option value="1">Mis Productos</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="local">
+				<div class="col-md-12 ">
+					<table class="table table-bordered table-condensed table-hover">
+						<thead>
+							<tr>
+								<th scope="col" style="width: 60px"></th>
+								<th scope="col" style="width: 400px">Nombre</th>
+								<th scope="col" style="width: 100px">Precio por menor</th>
+								<th scope="col" style="width: 100px">Precio por mayor</th>
+								<th scope="col">Categoria</th>
+								<th scope="col" style="width: 80px">Acciones</th>
+							</tr>
+						</thead>
+						<tbody id="tbListProductsRegulars"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="local">
+				<div class="col-md-12 ">
+					<select id="selectLocal" class="form-control form-control-sm">
+							<option value="1">Mis Ofertas</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="local">
+				<div class="col-md-12 ">
+					<table class="table table-bordered table-condensed table-hover">
+						<thead>
+							<tr>
+								<th scope="col" style="width: 60px"></th>
+								<th scope="col" style="width: 400px">Nombre</th>
+								<th scope="col" style="width: 100px">Precio por menor</th>
+								<th scope="col" style="width: 100px">Precio por mayor</th>
+								<th scope="col">Categoria</th>
+								<th scope="col" style="width: 80px">Acciones</th>
+							</tr>
+						</thead>
+							<tbody id="tbListProductsOffers"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <div id="AgregarLocal" style="display: none">
-        <div class="row">
-            <div class="local">
-                <div id="tituloLocal" class="col-md-8 localTitulo">
-                    Nuevo Producto
-                </div>
-                <!-- <div class="col-md-4 oferta" style="cursor: pointer" onclick="oferta()">
-                    <img id="imgOferta" class="img-oferta" src="images/icons/off.png" alt=""> Oferta
-                </div> -->
-                <div class="col-md-4">
-                    <label class="switch">
-                        <input type="checkbox"/>
-                        <span class="slider"></span>
-                    </label>
-                    <span>Oferta</span>
-                </div>
-                <div id="subTituloLocal" class="col-md-12 localSubTitulo">
-                    Ingresa los datos de tu nuevo producto.
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="local">
-                <div class="col-md-12 ">
-                    <div class="form-group row">
-                        <div class="col-sm-2 ">
-                            Nombre del Producto:
-                        </div>
+	<div id="AgregarLocal" style="display: none">
+		<div class="row">
+			<div class="local">
+				<div id="divTitulo" class="col-md-8 localTitulo"></div>
+				<div class="col-md-4">
+					<label class="switch">
+						<input type="checkbox" id="chkOffer"/>
+						<span class="slider"></span>
+					</label>
+					<span>Oferta</span>
+				</div>
+				<div id="divSubTitulo" class="col-md-12 localSubTitulo"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="local">
+				<div class="col-md-12 ">
+					<div class="form-group row">
+						<div class="col-sm-2 ">Nombre del Producto:</div>
+						<div class="col-sm-8">
+								<input type="text" class="form-control field" id="txtName" placeholder="Nombre del producto">
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-2 ">Descripcion:</div>
+						<div class="col-sm-8">
+								<textarea class="form-control field" id="txtDesc" rows="4" cols="50" placeholder="Descripcion del producto"></textarea>
+						</div>
+					</div>
+					<div class="form-group row">
+							<div class="col-sm-2 ">Categoria:</div>
+							<div class="col-sm-2">
+									<select class="form-control form-control-sm field" id="selectCategories"></select>
+							</div>
+					</div>
 
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="inputNombreProducto"
-                                placeholder="Nombre del producto">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-2 ">
-                            Descripcion:
-                        </div>
+					<div class="form-group row">
+							<div class="col-sm-2 ">
+									Unidad de medida:
+							</div>
 
-                        <div class="col-sm-8">
-                            <textarea class="form-control" id="inputDescripcionProducto" rows="4" cols="50"
-                                placeholder="Descripcion del producto"></textarea>
+							<div class="col-sm-2">
+									<select id="selectUnidad" class="form-control form-control-sm field">
+											<option value="1">Kilogramo</option>
+											<option value="2">Metro</option>
+											<option value="3">Unidad</option>
+									</select>
+							</div>
+					</div>
 
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-2 ">
-                            Categoria:
-                        </div>
+					<div class="form-group row">
+							<div class="col-sm-2 ">Precio al por menor:</div>
+							<div class="col-sm-1">
+									<input type="text" class="form-control field" id="txtPriceMinor" placeholder="S/.">
+							</div>
+					</div>
 
-                        <div class="col-sm-2">
-                            <select id="selectCategoria" class="form-control form-control-sm">
-                                <option value="1">Mujer</option>
-                                <option value="2">Varones</option>
-                                <option value="3">Niños</option>
-                                <option value="4">Calzados</option>
-                                <option value="5">Lenceria</option>
-                                <option value="6">Accesorios</option>
-                            </select>
-                        </div>
-                    </div>
+					<div class="form-group row">
+							<div class="col-sm-2 ">Precio al por mayor:</div>
+							<div class="col-sm-1">
+									<input type="text" class="form-control field" id="txtPriceMajor" placeholder="S/.">
+							</div>
+					</div>
+					<div class="form-group row">
+							<div class="col-sm-2 ">Foto del producto (3 Max.):</div>
+							<div class="col-sm-7">
+									<input type="file" class="form-control" id="txtFileImages" accept="image/x-png,image/gif,image/jpeg" multiple/>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
+		<div class="row">
+				<div class="local">
+						<div class="col-md-6 localSubTitulo">
+								Detalle del producto
+						</div>
+						<div class="col-md-4 inImg" style="cursor: pointer">
+								<img class="img-ico" src="images/icons/agregarlocal.png" alt="" onclick="addDetail()" />
+								<label>Agregar Detalle</label>
+						</div>
+				</div>
+		</div>
 
+		<div class="row">
+			<div class="local">
+				<div class="col-md-12 ">
+					<table class="table table-bordered table-condensed table-hover">
+						<thead>
+							<tr>
+								<th scope="col">Color</th>
+								<th scope="col">Tallas</th>
+								<th scope="col">Stock</th>
+								<th scope="col">Acciones</th>
+							</tr>
+						</thead>
+						<tbody id="tbListDetailProducts">
+							<tr>
+								<td colspan="4">No hay detalles agregados</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 
-                    <div class="form-group row">
-                        <div class="col-sm-2 ">
-                            Unidad de medida:
-                        </div>
+		<div class="row">
+				<div class="local">
+						<div class="der">
+								<button id="btnSaveProduct" class="btn btnMan" onclick="saveProduct()">Registrar producto</button>
+								<button id="btnUpdateProduct" class="btn btnMan" onclick="actualizarProducto()"
+										style="display: none">Guardar cambios</button>
+						</div>
+				</div>
+		</div>
+	</div>
 
-                        <div class="col-sm-2">
-                            <select id="selectUnidad" class="form-control form-control-sm">
-                                <option value="1">Kilogramo</option>
-                                <option value="2">Metro</option>
-                                <option value="3">Unidad</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="col-sm-2 ">
-                            Precio al por menor:
-                        </div>
-
-                        <div class="col-sm-1">
-                            <input type="text" class="form-control" id="inputPrecioMenor" placeholder="S/.">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="col-sm-2 ">
-                            Precio al por mayor:
-                        </div>
-
-                        <div class="col-sm-1">
-                            <input type="text" class="form-control" id="inputPrecioMayor" placeholder="S/.">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-2 ">
-                            Foto del producto (3 Max.):
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="local">
-                <div class="col-md-6 localSubTitulo">
-                    Detalle del producto
-                </div>
-                <div class="col-md-4 inImg" style="cursor: pointer" onclick="agregarDetalle()">
-                    <img class="img-ico" src="images/icons/agregarlocal.png" alt="">
-                </div>
-                <div class="col-md-2 inText" style="cursor: pointer" onclick="agregarDetalle()">
-                    Agregar detalle
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="local">
-                <div class="col-md-12 ">
-                    <table class="table table-bordered table-condensed table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">Color</th>
-                                <th scope="col">Tallas</th>
-                                <th scope="col">Stock</th>
-                                <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Azul</td>
-                                <td>S,M,L,XL</td>
-                                <td>30</td>
-                                <td><img class="img-ico" src="images/icons/editar.png" alt="" onclick="editarDetalle()">
-                                    <img class="img-ico" src="images/icons/eliminar.png" alt=""
-                                        onclick="eliminarDetalle()">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="local">
-                <div class="der">
-                    <button id="btnRegistrarProducto" class="btn btnMan" onclick="registrarProducto()">Registrar
-                        producto</button>
-                    <button id="btnActualizarProducto" class="btn btnMan" onclick="actualizarProducto()"
-                        style="display: none">Guardar cambios</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" id="myModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 id="tituloDetalle" class="modal-title">Agregar Detalle</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="form-group row">
-                            <div class="col-sm-2 ">
-                                Color:
-                            </div>
-
-                            <div class="col-sm-4">
-                                <select id="selectColor" class="form-control form-control-sm">
-                                    <option value="1">Azul</option>
-                                    <option value="2">Rojo</option>
-                                    <option value="3">Amarillo</option>
-                                    <option value="4">Verde</option>
-                                    <option value="5">Blanco</option>
-                                    <option value="6">Negro</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-2 ">
-                                Tallas:
-                            </div>
-
-                            <div class="col-sm-8">
-                                <label class="checkbox-inline"><input type="checkbox" value="">S</label>
-                                <label class="checkbox-inline"><input type="checkbox" value="">M</label>
-                                <label class="checkbox-inline"><input type="checkbox" value="">L</label>
-                                <label class="checkbox-inline"><input type="checkbox" value="">XL</label>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-2 ">
-                                Stock:
-                            </div>
-
-                            <div class="col-sm-3">
-                                <input type="number" class="form-control" id="inputStock" placeholder="###">
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button id="BtnAgregarDetalle" type="button" class="btn btn-primary" data-dismiss="modal">Agregar
-                        Detalle</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="modal" id="myModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 id="tituloDetalle" class="modal-title">Agregar Detalle</h5>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="form-group row">
+							<div class="col-sm-2 ">Color:</div>
+							<div class="col-sm-4">
+									<select id="selectColor" class="form-control form-control-sm"></select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-sm-2 ">Tallas:</div>
+							<div class="col-sm-8" id="divSizes"></div>
+						</div>
+						<div class="form-group row">
+							<div class="col-sm-2 ">Stock:</div>
+							<div class="col-sm-3">
+									<input type="number" class="form-control" id="txtStock" placeholder="100">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button 
+						type="button"
+						class="btn btn-primary"
+						id="btnSaveDetail"
+						data-dismiss="modal"
+						onclick="saveDetail()">Agregar Detalle</button>
+					<button
+						type="button"
+						class="btn btn-secondary"
+						id="btnCancelDetail"
+						data-dismiss="modal"
+						onclick="updateDetail()">Cancelar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="loader" id="divLoading"></div>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="Scripts/ListProducts.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="Scripts/ListProducts.js"></script>
 
-    <script type="text/javascript">
+	<script type="text/javascript">
 
-        function agregarProducto() {
-            $("#tituloLocal").text('Nuevo producto');
-            $("#subTituloLocal").text('Ingresa los datos de tu nuevo producto.');
-            $("#rdoTipoLocal").show();
-            $("#btnActualizarLocal").hide();
-            $("#btnRegistrarLocal").show();
-            $("#listadoLocal").hide();
-            $("#AgregarLocal").show();
-        }
+			function actualizarProducto() {
+					$("#listadoLocal").show();
+					$("#AgregarLocal").hide();
+			}
 
-        function registrarProducto() {
-            $("#listadoLocal").show();
-            $("#AgregarLocal").hide();
-        }
-
-        function actualizarProducto() {
-            $("#listadoLocal").show();
-            $("#AgregarLocal").hide();
-        }
-
-        function editarProducto() {
-            $("#tituloLocal").text('Editar Producto');
-            $("#subTituloLocal").text('Edita los datos de tu producto.');
-            $("#btnRegistrarProducto").hide();
-            $("#btnActualizarProducto").show();
-            $("#listadoLocal").hide();
-            $("#AgregarLocal").show();
-        }
-
-        function agregarDetalle() {
-            $("#myModal").modal();
-            $("#tituloDetalle").text('Agregar detalle');
-            $("#BtnAgregarDetalle").text('Agregar detalle');
-
-        }
-
-        function editarDetalle() {
-            $("#myModal").modal();
-            $("#tituloDetalle").text('Editar detalle');
-            $("#BtnAgregarDetalle").text('Guardar cambios');
-        }
-
-        function oferta(){
-
-            var imgSrc = $("#imgOferta").attr("src");
-        
-            if(imgSrc == "images/icons/off.png"){
-                $("#imgOferta").attr("src","images/icons/on.png");
-            }else{
-                $("#imgOferta").attr("src","images/icons/off.png");
-            }
-            
-        }
-    </script>
+			function editarProducto() {
+					$("#tituloLocal").text('Editar Producto');
+					$("#subTituloLocal").text('Edita los datos de tu producto.');
+					$("#btnSaveProduct").hide();
+					$("#btnUpdateProduct").show();
+					$("#listadoLocal").hide();
+					$("#AgregarLocal").show();
+			}
+	</script>
 </body>
 </html>
