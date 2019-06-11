@@ -1,284 +1,192 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="webthemez" />
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="webthemez">
-
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
     <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> -->
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
-
-
-</head>
-
-<body>
-    <div id="listadoLocal">
-        <div class="row">
-            <div class="local">
-                <div class="col-md-6 localTitulo">
-                    Locales
-                </div>
-                <div class="col-md-4 inImg" style="cursor: pointer" onclick="agregarLocal()">
-                    <img class="img-ico" src="images/icons/agregarlocal.png" alt="">
-                </div>
-                <div class="col-md-2 inText" style="cursor: pointer" onclick="agregarLocal()">
-                    Agregar local
-                </div>
-            </div>
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="fonts/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="listLocal">
+      <div class="row">
+        <div class="local">
+          <div class="col-md-6 localTitulo"><span>Locales</span></div>
+          <div
+            class="inText"
+            id="divAddLocal"
+            style="cursor: pointer"
+            onclick="addLocal()"
+          >
+            <img class="img-ico" src="images/icons/agregarlocal.png" alt="" />
+            <span>Agregar local</span>
+          </div>
         </div>
-        <div class="row">
-            <div class="local">
-                <div class="col-md-12 ">
-                    <select id="selectLocal" class="form-control form-control-sm" onchange="comboLocal()">
-                        <option value="1">En Galeria</option>
-                        <option value="2">En Tienda</option>
-                    </select>
-                </div>
-            </div>
+      </div>
+      <div class="row">
+        <div class="local">
+          <div class="col-md-12 ">
+            <select id="selectLocal" class="form-control form-control-sm">
+              <option value="1">En Galeria</option>
+              <option value="2">En Tienda</option>
+            </select>
+          </div>
         </div>
-        <div id="localGaleria" class="row">
-            <div class="local">
-                <div class="col-md-12 ">
-                    <table class="table table-bordered table-condensed table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">N° de tienda</th>
-                                <th scope="col">N° de piso</th>
-                                <th scope="col">Direccion</th>
-                                <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbListLocalsGalery">
-                            <tr>
-                                <th scope="row">01</th>
-                                <td>Galeria Guizado</td>
-                                <td>269</td>
-                                <td>02</td>
-                                <td>Av. Aviacion 380</td>
-                                <td><img class="img-ico" src="images/icons/editar.png" alt="" onclick="editarLocal()">
-                                    <img class="img-ico" src="images/icons/eliminar.png" alt="" onclick="eliminarLocal()">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+      </div>
+      <div class="row">
+        <div class="local">
+          <div class="col-md-12" id="divLocals">
+            No tienes ningún local
+          </div>
         </div>
-        <div id="localTienda" class="row" style="display: none">
-            <div class="local">
-                <div class="col-md-12 ">
-                    <table class="table table-bordered table-condensed table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Direccion</th>
-                                <th scope="col">Referencia</th>
-                                <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbListLocalsShop">
-                            <tr>
-                                <th scope="row">01</th>
-                                <td>Av. Aviacion 980</td>
-                                <td>Al costado de Pio's Chicken</td>
-                                <td><img class="img-ico" src="images/icons/editar.png" alt="" onclick="editarLocal()">
-                                    <img class="img-ico" src="images/icons/eliminar.png" alt="" onclick="eliminarLocal()">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-
-    <div id="AgregarLocal" style="display: none">
-        <div class="row">
-            <div class="local">
-                <div id="tituloLocal" class="col-md-12 localTitulo">
-                    Nuevo Local
-                </div>
-                <div id="subTituloLocal" class="col-md-12 localSubTitulo">
-                    Ingresa los datos de tu nuevo local.
-                </div>
-            </div>
+    <div id="formLocal" style="display: none">
+      <div class="row">
+        <div class="local">
+          <div id="tituloLocal" class="col-md-12 localTitulo">Nuevo Local</div>
+          <div id="subTituloLocal" class="col-md-12 localSubTitulo">
+            Ingresa los datos de tu nuevo local.
+          </div>
         </div>
-        <div class="row">
-            <div class="local">
-                <div class="col-md-12 ">
-                    <div class="form-group row">
-                        <div class="col-sm-2 ">
-                            ID:
-                        </div>
-
-                        <div class="col-sm-1">
-                            <input type="text" class="form-control" id="idlocal" placeholder="ID">
-                        </div>
-                    </div>
-
-                    <div id="rdoTipoLocal" class="form-group row">
-                        <div class="col-sm-2 ">
-                            Seleccione:
-                        </div>
-                        <div class="col-sm-8">
-                            <input type="radio" id="radioTienda" name="tipoLocal" class="custom-control-input" value="1" checked>
-                            Tienda
-                            <input type="radio" id="radioGaleria" name="tipoLocal" class="custom-control-input" value="2">
-                            Galeria
-                        </div>
-                    </div>
-
-                    <div id="tiendaFormulario">
-                        <div class="form-group row">
-                            <div class="col-sm-2 ">
-                                Dirección de tienda:
-                            </div>
-
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="inputDireccionTienda"
-                                    placeholder="Dirección de tienda">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-sm-2 ">
-                                Referencia:
-                            </div>
-
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="inputReferencia" placeholder="Referencia">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="galeriaFormulario" style="display:none">
-                        <div class="form-group row">
-                            <div class="col-sm-2 ">
-                                Nombre de galería:
-                            </div>
-
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="inputGaleria"
-                                    placeholder="Nombre de galería">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-sm-2 ">
-                                N° de tienda:
-                            </div>
-
-                            <div class="col-sm-1">
-                                <input type="text" class="form-control" id="inputNumeroGaleria" placeholder="###">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-sm-2 ">
-                                N° de piso:
-                            </div>
-
-                            <div class="col-sm-1">
-                                <input type="text" class="form-control" id="inputNumeroPiso" placeholder="###">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-sm-2 ">
-                                Dirección de galería:
-                            </div>
-
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="inputDireccionGaleria"
-                                    placeholder="Dirección de galería">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="der">
-                            <button id="btnRegistrarLocal" class="btn btnMan" onclick="registrarLocal()">Registrar local</button>
-                            <button id="btnActualizarLocal" class="btn btnMan" onclick="actualizarLocal()" style="display: none">Guardar cambios</button>
-                    </div>
-                    
-
-                </div>
+      </div>
+      <div class="row">
+        <div class="local">
+          <div class="col-md-12 ">
+            <div id="rdoTipeLocal" class="form-group row">
+              <div class="col-sm-2 ">Seleccione:</div>
+              <div class="col-sm-8">
+                <input
+                  type="radio"
+                  id="radioTienda"
+                  name="tipoLocal"
+                  class="custom-control-input"
+                  value="1"
+                  onclick="changeForm()"
+                  checked
+                />
+                <span>Tienda</span>
+                <input
+                  type="radio"
+                  id="radioGaleria"
+                  name="tipoLocal"
+                  class="custom-control-input"
+                  value="2"
+                  onclick="changeForm()"
+                  style="margin-left:20px"
+                />
+                <span>Galería</span>
+              </div>
             </div>
+            <div id="tiendaFormulario">
+              <div class="form-group row">
+                <div class="col-sm-2 ">Dirección de tienda:</div>
+                <div class="col-sm-8">
+                  <input
+                    type="text"
+                    class="form-control field"
+                    id="inputDireccionTienda"
+                    placeholder="Avenida Huanuco 325"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-2 ">Referencia:</div>
+                <div class="col-sm-8">
+                  <input
+                    type="text"
+                    class="form-control field"
+                    id="inputReferencia"
+                    placeholder="A dos cuadras de la Galeria Asia"
+                  />
+                </div>
+              </div>
+            </div>
+            <div id="galeriaFormulario" style="display:none">
+              <div class="form-group row">
+                <div class="col-sm-2 ">
+                  Nombre de galería:
+                </div>
+                <div class="col-sm-8">
+                  <input
+                    type="text"
+                    class="form-control field"
+                    id="inputGaleria"
+                    placeholder="Galeria Asia"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-2 ">N° de tienda:</div>
+                <div class="col-sm-3">
+                  <input
+                    type="text"
+                    class="form-control field"
+                    id="inputNumeroGaleria"
+                    placeholder="Tienda n° 345"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-2 ">N° de piso:</div>
+                <div class="col-sm-3">
+                  <input
+                    type="text"
+                    class="form-control field"
+                    id="inputNumeroPiso"
+                    placeholder="Piso 3"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-2 ">Dirección de galería:</div>
+                <div class="col-sm-8">
+                  <input
+                    type="text"
+                    class="form-control field"
+                    id="inputDireccionGaleria"
+                    placeholder="Avenida Huanuco 325"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="der">
+              <button
+                id="btnSaveLocal"
+                class="btn btnMan"
+                onclick="saveLocal()"
+              >
+                Registrar local
+              </button>
+              <button
+                id="btnUpdateLocal"
+                class="btn btnMan"
+                onclick="saveLocal()"
+                style="display: none"
+              >
+                Guardar cambios
+              </button>
+              <button
+                id="btnCancelLocal"
+                class="btn btnMan"
+                onclick="closeLocal()"
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+    <div class="background" id="divLoading"><div class="loader"></div></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="Scripts/ListLocals.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("input[name=tipoLocal]").change(function () {
-                if ($(this).val() == 1){
-                    $("#tiendaFormulario").show();
-                $("#galeriaFormulario").hide();
-                }else{
-                    $("#galeriaFormulario").show();
-                $("#tiendaFormulario").hide();
-                }
-            });
-
-        });
-
-
-        function comboLocal() {
-            if ($("#selectLocal").val() == 1) {
-                $("#localGaleria").show();
-                $("#localTienda").hide();
-            } else {
-                $("#localTienda").show();
-                $("#localGaleria").hide();
-            }
-        }
-
-        function agregarLocal() {
-            $("#tituloLocal").text('Nuevo Local');
-            $("#subTituloLocal").text('Ingresa los datos de tu nuevo local.');
-            $("#rdoTipoLocal").show();
-            $("#btnActualizarLocal").hide();
-            $("#btnRegistrarLocal").show();
-            $("#listadoLocal").hide();
-            $("#AgregarLocal").show();
-        }
-
-        function registrarLocal(){
-            $("#listadoLocal").show();
-            $("#AgregarLocal").hide();
-        }
-
-        function actualizarLocal(){
-            $("#listadoLocal").show();
-            $("#AgregarLocal").hide();
-        }
-
-        function editarLocal(){
-            $("#tituloLocal").text('Editar Local');
-            $("#subTituloLocal").text('Edita los datos de tu local.');
-            $("#btnRegistrarLocal").hide();
-            $("#btnActualizarLocal").show();
-
-            if ($("#selectLocal").val() == 1) {
-                $("#galeriaFormulario").show();
-                $("#tiendaFormulario").hide();
-            } else {
-                $("#tiendaFormulario").show();
-                $("#galeriaFormulario").hide();
-            }
-            $("#rdoTipoLocal").hide();
-            
-            $("#listadoLocal").hide();
-            $("#AgregarLocal").show();
-        }
-    </script>
-</body>
+  </body>
+</html>

@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
+	<meta name="description" content="Mantenimiento de productos de una empresa">
 	<meta name="keywords" content="">
 	<meta name="author" content="webthemez">
 
@@ -18,14 +18,10 @@
 	<div id="listadoLocal">
 		<div class="row">
 			<div class="local">
-				<div class="col-md-6 localTitulo">
-						Productos
-				</div>
-				<div class="col-md-4 inImg" style="cursor: pointer" onclick="addProduct()">
-						<img class="img-ico" src="images/icons/agregarlocal.png" alt="">
-				</div>
-				<div class="col-md-2 inText" style="cursor: pointer" onclick="addProduct()">
-						Agregar producto
+				<div class="col-md-6 localTitulo"><span>Productos</span></div>
+				<div class="inText" style="cursor: pointer" onclick="addProduct()">
+					<img class="img-ico" src="images/icons/agregarlocal.png" alt="">
+					<span>Agregar producto</span>
 				</div>
 			</div>
 		</div>
@@ -130,9 +126,9 @@
 
 							<div class="col-sm-2">
 									<select id="selectUnidad" class="form-control form-control-sm field">
-											<option value="1">Kilogramo</option>
-											<option value="2">Metro</option>
-											<option value="3">Unidad</option>
+										<option value="kilogramo">Kilogramo</option>
+										<option value="metro">Metro</option>
+										<option value="unidad">Unidad</option>
 									</select>
 							</div>
 					</div>
@@ -195,13 +191,14 @@
 		</div>
 
 		<div class="row">
-				<div class="local">
-						<div class="der">
-								<button id="btnSaveProduct" class="btn btnMan" onclick="saveProduct()">Registrar producto</button>
-								<button id="btnUpdateProduct" class="btn btnMan" onclick="actualizarProducto()"
-										style="display: none">Guardar cambios</button>
-						</div>
+			<div class="local">
+				<div class="der">
+					<button id="btnSaveProduct" class="btn btnMan" onclick="saveProduct()">Registrar</button>
+					<button id="btnUpdateProduct" class="btn btnMan" onclick="actualizarProducto()"
+							style="display: none">Guardar cambios</button>
+					<button id="btnCancelProduct" class="btn btnMan" onclick="closeProduct()">Cancelar</button>
 				</div>
+			</div>
 		</div>
 	</div>
 
@@ -248,8 +245,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="loader" id="divLoading"></div>
-
+	<div class="background" id="divLoading"><div class="loader"></div></div>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
@@ -260,15 +256,6 @@
 			function actualizarProducto() {
 					$("#listadoLocal").show();
 					$("#AgregarLocal").hide();
-			}
-
-			function editarProducto() {
-					$("#tituloLocal").text('Editar Producto');
-					$("#subTituloLocal").text('Edita los datos de tu producto.');
-					$("#btnSaveProduct").hide();
-					$("#btnUpdateProduct").show();
-					$("#listadoLocal").hide();
-					$("#AgregarLocal").show();
 			}
 	</script>
 </body>

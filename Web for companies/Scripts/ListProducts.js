@@ -1,25 +1,86 @@
-const URL_PRODUCT = "api/v1/products/enterprise/garments/",
-  URLS_PRODUCTS = [
-    "api/v1/products/category/",
-    "api/v1/products/size/",
-    "api/v1/products/color/"
-  ];
+const URL_PRODUCTS = "api/v1/products/enterprise/garments/",
+  URL_PRODUCT = "api/v1/products/garments-upt/";
+const URLS_FEATURES = [
+  "api/v1/products/category/",
+  "api/v1/products/size/",
+  "api/v1/products/color/"
+];
 
 var URL_BASE = "";
-var newDetailProducts = [];
+var newDetailProducts = [],
+  imageProduct = [];
 var indexProduct = 0,
   indexDetail = 0;
+
+function fetchAPI(url, method, form = null) {
+  let auth = sessionStorage.getItem("auth-token");
+  let header = new Headers();
+  header.append("Authorization", "Token " + auth);
+  let initSetting = { method: method, headers: header };
+  if (method === "POST") Object.assign(initSetting, { body: form });
+  return fetch(URL_BASE + url, initSetting);
+}
+
+function cleanProduct() {
+  let fields = document.getElementsByClassName("field");
+  let nFields = fields.length;
+  for (let i = 0; i < nFields; i++) {
+    if (fields[i].id.indexOf("select") > -1) fields[i].selectedIndex = 0;
+    else fields[i].value = "";
+  }
+  document.getElementById("chkOffer").checked = false;
+  newDetailProducts = [];
+  indexProduct = 0;
+  indexDetail = 0;
+  imageProduct = [];
+}
 
 function addProduct() {
   $("#divTitulo").text("Nuevo producto");
   $("#divSubTitulo").text("Ingresa los datos de tu nuevo producto.");
-  $("#btnActualizarLocal").hide();
-  $("#btnRegistrarLocal").show();
+  $("#btnSaveProduct").show();
+  $("#btnUpdateProduct").hide();
   $("#listadoLocal").hide();
   $("#AgregarLocal").show();
+  window.scrollTo(0, 0);
+}
+
+function editProduct(id) {
+  $("#tituloLocal").text("Editar Producto");
+  $("#subTituloLocal").text("Edita los datos de tu producto.");
+  $("#btnSaveProduct").hide();
+  $("#btnUpdateProduct").show();
+  $("#listadoLocal").hide();
+  $("#AgregarLocal").show();
+  window.scrollTo(0, 0);
+  $("#divLoading").show();
+  indexProduct = id;
+  let url = URL_PRODUCT + id + "/";
+  fetchAPI(url, "GET")
+    .then(response => {
+      console.log(response);
+      return response.json();
+    })
+    .then(objProduct => {
+      console.log(objProduct);
+      let fields = document.getElementsByClassName("field");
+      fields[0].value = objProduct["name"];
+      fields[1].value = objProduct["description"];
+      fields[2].value = objProduct["category"];
+      fields[3].value = objProduct["unidad_medida"];
+      fields[4].value = objProduct["precio_size_less"];
+      fields[5].value = objProduct["precio_size_higher"];
+      document.getElementById("chkOffer").checked = objProduct["ofert"];
+      $("#divLoading").hide();
+    })
+    .catch(error => {
+      $("#divLoading").hide();
+      console.log(error);
+    });
 }
 
 function saveProduct() {
+  $("#divLoading").show();
   let fields = document.getElementsByClassName("field");
   var formData = new FormData();
   formData.append("name", fields[0].value);
@@ -31,25 +92,28 @@ function saveProduct() {
   formData.append("ofert", document.getElementById("chkOffer").checked);
   formData.append("exclusive", false);
   formData.append("brand", "Prueba");
-  let auth = sessionStorage.getItem("auth-token");
-  let header = new Headers();
-  header.append("Authorization", "Token " + auth);
-  let initSetting = { method: "POST", headers: header, body: formData };
-  fetch(URL_BASE + URL_PRODUCT, initSetting)
+  fetchAPI(URL_PRODUCTS, "POST", formData)
     .then(response => {
       alert("Se creo el producto exitosamente");
-      $("#divLoading").show();
-      initSetting = { headers: header, cache: "default" };
-      return fetch(URL_BASE + URL_PRODUCT, initSetting);
+      return fetchAPI(URL_PRODUCTS, "GET");
     })
     .then(response => response.json())
     .then(resJson => {
       listProducts(resJson);
-      // $("#divLoading").hide();
+      $("#divLoading").hide();
+      closeProduct();
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+      $("#divLoading").hide();
+      console.log(error);
+    });
+}
+
+function closeProduct() {
   $("#listadoLocal").show();
   $("#AgregarLocal").hide();
+  window.scrollTo(0, 0);
+  cleanProduct();
 }
 
 function addDetail() {
@@ -146,17 +210,12 @@ function listDetailProduct() {
 window.onload = function() {
   $("#divLoading").show();
   URL_BASE = sessionStorage.getItem("urlBase");
-  let auth = sessionStorage.getItem("auth-token");
-  let header = new Headers();
-  header.append("Authorization", "Token " + auth);
-  let initSetting = { headers: header, cache: "default" };
-  fetch(URL_BASE + URL_PRODUCT, initSetting)
+  fetchAPI(URL_PRODUCTS, "GET")
     .then(response => response.json())
     .then(resJson => {
       listProducts(resJson);
-      return Promise.all(
-        URLS_PRODUCTS.map(url => fetch(URL_BASE + url, initSetting))
-      );
+      $("#divLoading").hide();
+      return Promise.all(URLS_FEATURES.map(url => fetchAPI(url, "GET")));
     })
     .then(responses => Promise.all(responses.map(res => res.json())))
     .then(resJson => {
@@ -193,10 +252,14 @@ function listProducts(result) {
     strTableBody += rowList["category"]["name"];
     strTableBody += "</td>";
     strTableBody += "<td>";
-    strTableBody +=
-      '<img class="img-ico" src="images/icons/editar.png" alt="" onclick="editarProducto()">';
-    strTableBody +=
-      '<img class="img-ico" src="images/icons/eliminar.png" alt="" onclick="eliminarProducto()">';
+    strTableBody += '<img class="img-ico" src="images/icons/editar.png" ';
+    strTableBody += 'alt="" onclick="editProduct(';
+    strTableBody += rowList["id"];
+    strTableBody += ')"/>';
+    strTableBody += '<img class="img-ico" src="images/icons/eliminar.png" ';
+    strTableBody += 'alt="" onclick="deleteProduct(';
+    strTableBody += rowList["id"];
+    strTableBody += ')"/>';
     strTableBody += "</td>";
     strTableBody += "</tr>";
     if (rowList["ofert"]) strTableBodyOffers += strTableBody;
